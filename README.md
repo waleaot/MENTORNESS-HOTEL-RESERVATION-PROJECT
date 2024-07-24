@@ -1,5 +1,4 @@
 # MENTORNESS-HOTEL-RESERVATION-PROJECT
-# Hotel Reservations Data Analysis - README
 
 ## Project Overview
 This project involves analyzing a hotel reservations dataset using PostgreSQL. The dataset contains information about hotel bookings, including guest details, booking details, and reservation statuses. The analysis aims to derive insights into various aspects of hotel reservations, such as popular meal plans, average prices, common room types, and more.
