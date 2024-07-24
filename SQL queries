@@ -1,0 +1,75 @@
+The analysis covers the following key questions:
+
+Total Number of Reservations:
+
+Query: SELECT COUNT(*) FROM reservations;
+Most Popular Meal Plan:
+
+Query: SELECT type_of_meal_plan, COUNT(*) AS count FROM reservations GROUP BY type_of_meal_plan ORDER BY count DESC LIMIT 1;
+Average Price per Room for Reservations Involving Children:
+
+Query: SELECT AVG(avg_price_per_room) FROM reservations WHERE no_of_children > 0;
+Number of Reservations for the Year 20XX:
+
+Replace 20XX with the desired year.
+Query: SELECT COUNT(*) FROM reservations WHERE EXTRACT(YEAR FROM arrival_date) = 20XX;
+Most Commonly Booked Room Type:
+
+Query: SELECT room_type_reserved, COUNT(*) AS count FROM reservations GROUP BY room_type_reserved ORDER BY count DESC LIMIT 1;
+Reservations Falling on a Weekend:
+
+Query: SELECT COUNT(*) FROM reservations WHERE no_of_weekend_nights > 0;
+Highest and Lowest Lead Time for Reservations:
+
+Query (Highest): SELECT MAX(lead_time) FROM reservations;
+Query (Lowest): SELECT MIN(lead_time) FROM reservations;
+Most Common Market Segment Type:
+
+Query: SELECT market_segment_type, COUNT(*) AS count FROM reservations GROUP BY market_segment_type ORDER BY count DESC LIMIT 1;
+Reservations with Booking Status "Confirmed":
+
+Query: SELECT COUNT(*) FROM reservations WHERE booking_status = 'Confirmed';
+Total Number of Adults and Children Across All Reservations:
+
+Query: SELECT SUM(no_of_adults) AS total_adults, SUM(no_of_children) AS total_children FROM reservations;
+Average Number of Weekend Nights for Reservations Involving Children:
+
+Query: SELECT AVG(no_of_weekend_nights) FROM reservations WHERE no_of_children > 0;
+Number of Reservations Made in Each Month:
+
+Query: SELECT EXTRACT(MONTH FROM arrival_date) AS month, COUNT(*) AS count FROM reservations GROUP BY month ORDER BY month;
+Average Number of Nights (Weekend and Weekday) Spent by Guests for Each Room Type:
+
+Query: SELECT room_type_reserved, AVG(no_of_weekend_nights + no_of_week_nights) AS avg_nights FROM reservations GROUP BY room_type_reserved;
+Most Common Room Type for Reservations Involving Children and Average Price for That Room Type:
+
+Query:
+WITH child_reservations AS (
+  SELECT room_type_reserved, AVG(avg_price_per_room) AS avg_price, COUNT(*) AS count
+  FROM reservations
+  WHERE no_of_children > 0
+  GROUP BY room_type_reserved
+)
+SELECT room_type_reserved, avg_price
+FROM child_reservations
+ORDER BY count DESC
+LIMIT 1;
+Market Segment Type That Generates the Highest Average Price per Room:
+
+Query: SELECT market_segment_type, AVG(avg_price_per_room) AS avg_price FROM reservations GROUP BY market_segment_type ORDER BY avg_price DESC LIMIT 1;
+Getting Started
+To run the analysis on your local machine, follow these steps:
+
+Clone the Repository:
+
+git clone https://github.com/your-username/hotel-reservations-analysis.git
+cd hotel-reservations-analysis
+Set Up PostgreSQL Database:
+
+Install PostgreSQL.
+Create a new database.
+Import the dataset into the database.
+Execute SQL Queries:
+
+Use your preferred SQL client to connect to the PostgreSQL database.
+Run the provided SQL queries to derive insights.
